@@ -55,7 +55,7 @@ public class XulambsConveniencias {
             System.out.print("Descrição do produto: ");
             descricao = teclado.nextLine();
             System.out.print("Valor unitário do produto: ");
-            valorUnitario = Double.parseDouble(teclado.nextLine());
+            valorUnitario = Double.parseDouble(teclado.nextLine().replace(",","."));
             novo = new Produto();
             novo.registrar(descricao, valorUnitario);
             novosProdutos[quantosProdutos] = novo;
@@ -76,11 +76,55 @@ public class XulambsConveniencias {
      * @return O valor obtido com a venda de N unidades deste produto (N sendo definido pela pessoa operadora na execução)
      */
     public static double adicionarNaVenda(Produto prod){
-        //TODO: código do método
-        return 0d;
+        int quant;
+        System.out.println("Produto escolhido: " + prod.descricaoProduto());
+        System.out.println("Quantas unidades deseja? ");
+        quant = Integer.parseInt(teclado.nextLine());
+
+        return prod.valorLote(quant);
     }
     
     public static void main(String[] args) {
+        Produto[] produtos = cadastrarProdutos();
         
+        int opcao = exibirMenu();
+
+        do{
+            switch (opcao) {
+                case 1 -> iniciarVenda();
+                case 2 -> exibitTotalVendido();
+            }
+            opcao = exibirMenu();
+        }while(opcao != 0 );
+        
+         
+    }
+
+    private static Object exibitTotalVendido() {
+        return null;
+    }
+
+    private static Object iniciarVenda() {
+        double valorVenda = 0;
+        do{
+            Produto = prod = escolherProduto();
+            valorVenda += adicionarNaVenda(prod);
+        }while();
+
+
+    }
+
+    private static int exibirMenu() {
+        int opcao = 0;
+        System.out.println("XULAMBIS CONVENIENCIA");
+        System.out.println("Escolha sua opção: ");
+        System.out.println("1 - Iniciar venda");
+        System.out.println("2 - Mostrar total vendido no dia");
+        System.out.println("0 - Sair");
+        System.out.println("Digite sua escolha:");
+
+        opcao = Integer.parseInt(teclado.nextLine());
+
+        return opcao;
     }
 }
